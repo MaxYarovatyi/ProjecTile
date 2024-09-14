@@ -1,0 +1,15 @@
+X:\diploma\Infrastructure\bin\Debug\net8.0\Infrastructure.deps.json
+X:\diploma\Infrastructure\bin\Debug\net8.0\Infrastructure.dll
+X:\diploma\Infrastructure\bin\Debug\net8.0\Infrastructure.pdb
+X:\diploma\Infrastructure\bin\Debug\net8.0\core.dll
+X:\diploma\Infrastructure\bin\Debug\net8.0\core.pdb
+X:\diploma\Infrastructure\obj\Debug\net8.0\Infrastructure.csproj.AssemblyReference.cache
+X:\diploma\Infrastructure\obj\Debug\net8.0\Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+X:\diploma\Infrastructure\obj\Debug\net8.0\Infrastructure.AssemblyInfoInputs.cache
+X:\diploma\Infrastructure\obj\Debug\net8.0\Infrastructure.AssemblyInfo.cs
+X:\diploma\Infrastructure\obj\Debug\net8.0\Infrastructure.csproj.CoreCompileInputs.cache
+X:\diploma\Infrastructure\obj\Debug\net8.0\Infrastr.15EFFBFE.Up2Date
+X:\diploma\Infrastructure\obj\Debug\net8.0\Infrastructure.dll
+X:\diploma\Infrastructure\obj\Debug\net8.0\refint\Infrastructure.dll
+X:\diploma\Infrastructure\obj\Debug\net8.0\Infrastructure.pdb
+X:\diploma\Infrastructure\obj\Debug\net8.0\ref\Infrastructure.dll
