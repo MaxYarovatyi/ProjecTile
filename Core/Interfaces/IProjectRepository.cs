@@ -8,8 +8,8 @@ namespace Core.Interfaces
 {
     public interface IProjectRepository
     {
-        Task<Project> GetProjectById(int id);
+        Task<Project> GetProjectById(string id);
         Task<IReadOnlyList<Project>> GetProjectsAsync();
-        Task<IEnumerable<Core.Entities.TaskStatus>> GetTaskStatusesAsync();
+
     }
 }

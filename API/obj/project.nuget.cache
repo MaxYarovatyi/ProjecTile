@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "0ekwTF07VE8=",
+  "dgSpecHash": "+dNbGAzeTj4=",
   "success": true,
   "projectFilePath": "X:\\diploma\\api\\api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\makcy\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\makcy\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\makcy\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\makcy\\.nuget\\packages\\macross.json.extensions\\3.0.0\\macross.json.extensions.3.0.0.nupkg.sha512",
     "C:\\Users\\makcy\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "C:\\Users\\makcy\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\makcy\\.nuget\\packages\\microsoft.aspnetcore.authentication.cookies\\2.2.0\\microsoft.aspnetcore.authentication.cookies.2.2.0.nupkg.sha512",

@@ -149,3 +149,4 @@ X:\diploma\api\obj\Debug\net8.0\refint\api.dll
 X:\diploma\api\obj\Debug\net8.0\api.pdb
 X:\diploma\api\obj\Debug\net8.0\api.genruntimeconfig.cache
 X:\diploma\api\obj\Debug\net8.0\ref\api.dll
+X:\diploma\api\bin\Debug\net8.0\Macross.Json.Extensions.dll

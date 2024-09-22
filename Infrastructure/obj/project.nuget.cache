@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "IeeYmsH/pZU=",
+  "dgSpecHash": "qQbA8HC+NKA=",
   "success": true,
   "projectFilePath": "X:\\diploma\\Infrastructure\\Infrastructure.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\makcy\\.nuget\\packages\\macross.json.extensions\\3.0.0\\macross.json.extensions.3.0.0.nupkg.sha512",
     "C:\\Users\\makcy\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "C:\\Users\\makcy\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\makcy\\.nuget\\packages\\microsoft.aspnetcore.authentication.cookies\\2.2.0\\microsoft.aspnetcore.authentication.cookies.2.2.0.nupkg.sha512",

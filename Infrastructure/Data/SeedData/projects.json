@@ -7,9 +7,8 @@
     "name": null,
     "ownerId": "789f012d-c45e-67g8-8902-567n890123op",
     "participants": [],
-    "participantsId": [],
-    "tasks": [],
-    "comments": []
+    "comments": [],
+    "tasks": []
   },
   {
     "guid": "223e4567-e89b-12d3-a456-426614174002",
@@ -19,9 +18,8 @@
     "name": null,
     "ownerId": "123f012d-a12e-34g8-5672-891j234567kl",
     "participants": [],
-    "participantsId": [],
-    "tasks": [],
-    "comments": []
+    "comments": [],
+    "tasks": []
   },
   {
     "guid": "323e4567-e89b-12d3-a456-426614174003",
@@ -31,9 +29,8 @@
     "name": null,
     "ownerId": "567f890d-b34g-78h9-2345-678p901234nm",
     "participants": [],
-    "participantsId": [],
-    "tasks": [],
-    "comments": []
+    "comments": [],
+    "tasks": []
   },
   {
     "guid": "423e4567-e89b-12d3-a456-426614174004",
@@ -43,9 +40,8 @@
     "name": null,
     "ownerId": "234b901d-c45g-89i0-3456-789q012345no",
     "participants": [],
-    "participantsId": [],
-    "tasks": [],
-    "comments": []
+    "comments": [],
+    "tasks": []
   },
   {
     "guid": "523e4567-e89b-12d3-a456-426614174005",
@@ -55,9 +51,8 @@
     "name": null,
     "ownerId": "678c901e-d56h-90j1-4567-890r123456pq",
     "participants": [],
-    "participantsId": [],
-    "tasks": [],
-    "comments": []
+    "comments": [],
+    "tasks": []
   },
   {
     "guid": "623e4567-e89b-12d3-a456-426614174006",
@@ -67,9 +62,8 @@
     "name": null,
     "ownerId": "789d012f-e67i-01k2-5678-901s234567qr",
     "participants": [],
-    "participantsId": [],
-    "tasks": [],
-    "comments": []
+    "comments": [],
+    "tasks": []
   },
   {
     "guid": "723e4567-e89b-12d3-a456-426614174007",
@@ -79,9 +73,8 @@
     "name": null,
     "ownerId": "890e123g-f78j-12l3-6789-012t345678rs",
     "participants": [],
-    "participantsId": [],
-    "tasks": [],
-    "comments": []
+    "comments": [],
+    "tasks": []
   },
   {
     "guid": "823e4567-e89b-12d3-a456-426614174008",
@@ -91,9 +84,8 @@
     "name": null,
     "ownerId": "901f234h-g89k-23m4-7890-123u456789st",
     "participants": [],
-    "participantsId": [],
-    "tasks": [],
-    "comments": []
+    "comments": [],
+    "tasks": []
   },
   {
     "guid": "923e4567-e89b-12d3-a456-426614174009",
@@ -103,9 +95,8 @@
     "name": null,
     "ownerId": "012g345i-h90l-34n5-8901-234v567890tu",
     "participants": [],
-    "participantsId": [],
-    "tasks": [],
-    "comments": []
+    "comments": [],
+    "tasks": []
   },
   {
     "guid": "a23e4567-e89b-12d3-a456-426614174010",
@@ -115,7 +106,6 @@
     "name": null,
     "ownerId": "123h456j-i01m-45o6-9012-345w678901uv",
     "participants": [],
-    "participantsId": [],
     "tasks": [],
     "comments": []
   }

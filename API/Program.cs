@@ -1,16 +1,25 @@
 using System.Text.Encodings.Web;
+using Core.Entities;
 using Core.Interfaces;
 using Infrastructure.Data;
+using Infrastructure.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using StackExchange.Redis;
+using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers().AddJsonOptions(options =>
 {
-    options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
-    options.JsonSerializerOptions.Encoder = JavaScriptEncoder.Default;
+    options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
 });
 
 builder.Services.AddCors();
@@ -18,8 +27,21 @@ builder.Services.AddCors();
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
-builder.Services.AddDbContext<StoreContext>(x => x.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
-
+builder.Services.AddScoped<ITaskRepository, TaskRepository>();
+builder.Services.AddScoped<ICommentRepository, CommentRepository>();
+//builder.Services.AddDbContext<StoreContext>(x => x.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<AppIdentityDbContext>(x =>
+{
+    x.UseSqlite(builder.Configuration.GetConnectionString("IdentityConnection"));
+});
+builder.Services.AddSingleton<IConnectionMultiplexer>(c =>
+{
+    var configuration = ConfigurationOptions.Parse(builder.Configuration.GetConnectionString("Redis"), true);
+    return ConnectionMultiplexer.Connect(configuration);
+});
+var b = builder.Services.AddIdentity<AccountUser, IdentityRole>();
+b.AddEntityFrameworkStores<AppIdentityDbContext>();
+b.AddSignInManager<SignInManager<AccountUser>>();
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "API", Version = "v1" });
@@ -32,9 +54,14 @@ using (var scope = app.Services.CreateScope())
     var loggerFactory = services.GetRequiredService<ILoggerFactory>();
     try
     {
-        var context = services.GetRequiredService<StoreContext>();
-        await context.Database.MigrateAsync();
-        await StoreContextSeed.SeedAsync(context, loggerFactory);
+        //var context = services.GetRequiredService<StoreContext>();
+        // await context.Database.MigrateAsync();
+        //await StoreContextSeed.SeedAsync(context, loggerFactory);
+
+        var userManager = services.GetRequiredService<UserManager<AccountUser>>();
+        var identityContext = services.GetRequiredService<AppIdentityDbContext>();
+        await identityContext.Database.MigrateAsync();
+        await AppIdentityDbContextSeed.SeedUserAsync(userManager);
     }
     catch (Exception ex)
     {
@@ -46,7 +73,7 @@ using (var scope = app.Services.CreateScope())
 
 if (app.Environment.IsDevelopment())
 {
-    //app.UseDeveloperExceptionPage();
+    app.UseDeveloperExceptionPage();
     app.UseSwagger();
     app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1"));
 }
@@ -64,8 +91,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 
-// app.UseAuthentication();
-// app.UseAuthorization();
+app.UseAuthentication();
+app.UseAuthorization();
 
 
 app.MapControllers();

@@ -25,7 +25,7 @@ namespace API.Controllers
             return Ok(await _projectRepository.GetProjectsAsync());
         }
         [HttpGet("{id}")]
-        public async Task<ActionResult<Project>> Get(int id)
+        public async Task<ActionResult<Project>> Get(string id)
         {
             return Ok(await _projectRepository.GetProjectById(id));
         }
