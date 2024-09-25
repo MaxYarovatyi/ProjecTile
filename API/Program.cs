@@ -29,6 +29,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
 builder.Services.AddScoped<ITaskRepository, TaskRepository>();
 builder.Services.AddScoped<ICommentRepository, CommentRepository>();
+builder.Services.AddScoped<IUserProjectsRepository, UserProjectsRepository>();
 //builder.Services.AddDbContext<StoreContext>(x => x.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddDbContext<AppIdentityDbContext>(x =>
 {
