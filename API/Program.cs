@@ -13,6 +13,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using StackExchange.Redis;
 using System.Text.Json;
+using API.Extensions;
+using Infrastructure.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,11 +27,11 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 builder.Services.AddCors();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-
 builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
 builder.Services.AddScoped<ITaskRepository, TaskRepository>();
 builder.Services.AddScoped<ICommentRepository, CommentRepository>();
 builder.Services.AddScoped<IUserProjectsRepository, UserProjectsRepository>();
+builder.Services.AddScoped<ITokenService, TokenService>();
 //builder.Services.AddDbContext<StoreContext>(x => x.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddDbContext<AppIdentityDbContext>(x =>
 {
@@ -40,9 +42,7 @@ builder.Services.AddSingleton<IConnectionMultiplexer>(c =>
     var configuration = ConfigurationOptions.Parse(builder.Configuration.GetConnectionString("Redis"), true);
     return ConnectionMultiplexer.Connect(configuration);
 });
-var b = builder.Services.AddIdentity<AccountUser, IdentityRole>();
-b.AddEntityFrameworkStores<AppIdentityDbContext>();
-b.AddSignInManager<SignInManager<AccountUser>>();
+builder.Services.AddIdentityServices(builder.Configuration);
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "API", Version = "v1" });

@@ -26,8 +26,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "X:\\diploma\\infrastructure\\infrastructure.csproj": {
-                "projectPath": "X:\\diploma\\infrastructure\\infrastructure.csproj"
+              "X:\\diploma\\Infrastructure\\Infrastructure.csproj": {
+                "projectPath": "X:\\diploma\\Infrastructure\\Infrastructure.csproj"
               }
             }
           }
@@ -169,14 +169,14 @@
         }
       }
     },
-    "X:\\diploma\\infrastructure\\infrastructure.csproj": {
+    "X:\\diploma\\Infrastructure\\Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "X:\\diploma\\infrastructure\\infrastructure.csproj",
-        "projectName": "infrastructure",
-        "projectPath": "X:\\diploma\\infrastructure\\infrastructure.csproj",
+        "projectUniqueName": "X:\\diploma\\Infrastructure\\Infrastructure.csproj",
+        "projectName": "Infrastructure",
+        "projectPath": "X:\\diploma\\Infrastructure\\Infrastructure.csproj",
         "packagesPath": "C:\\Users\\makcy\\.nuget\\packages\\",
-        "outputPath": "X:\\diploma\\infrastructure\\obj\\",
+        "outputPath": "X:\\diploma\\Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\makcy\\AppData\\Roaming\\NuGet\\NuGet.Config"

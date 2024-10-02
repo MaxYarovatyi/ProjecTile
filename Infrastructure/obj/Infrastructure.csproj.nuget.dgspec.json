@@ -1,7 +1,7 @@
 {
   "format": 1,
   "restore": {
-    "X:\\diploma\\infrastructure\\infrastructure.csproj": {}
+    "X:\\diploma\\Infrastructure\\Infrastructure.csproj": {}
   },
   "projects": {
     "X:\\diploma\\core\\core.csproj": {
@@ -72,14 +72,14 @@
         }
       }
     },
-    "X:\\diploma\\infrastructure\\infrastructure.csproj": {
+    "X:\\diploma\\Infrastructure\\Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "X:\\diploma\\infrastructure\\infrastructure.csproj",
-        "projectName": "infrastructure",
-        "projectPath": "X:\\diploma\\infrastructure\\infrastructure.csproj",
+        "projectUniqueName": "X:\\diploma\\Infrastructure\\Infrastructure.csproj",
+        "projectName": "Infrastructure",
+        "projectPath": "X:\\diploma\\Infrastructure\\Infrastructure.csproj",
         "packagesPath": "C:\\Users\\makcy\\.nuget\\packages\\",
-        "outputPath": "X:\\diploma\\infrastructure\\obj\\",
+        "outputPath": "X:\\diploma\\Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\makcy\\AppData\\Roaming\\NuGet\\NuGet.Config"
