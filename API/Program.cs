@@ -82,12 +82,12 @@ if (app.Environment.IsDevelopment())
 app.UseStatusCodePagesWithReExecute("/errors/{0}");
 
 app.UseRouting();
-// app.UseCors(builder =>
-// {
-//     builder.WithOrigins("http://localhost:4200", "https://localhost:4200")
-//     .AllowAnyHeader()
-//     .AllowAnyMethod();
-// });
+app.UseCors(builder =>
+{
+    builder.WithOrigins("http://localhost:4200", "https://localhost:4200")
+    .AllowAnyHeader()
+    .AllowAnyMethod();
+});
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
