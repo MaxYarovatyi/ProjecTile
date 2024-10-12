@@ -35,7 +35,11 @@ namespace Infrastructure.Data
             return data.IsNullOrEmpty ? null : JsonSerializer.Deserialize<List<Project>>(data);
         }
 
-
+        public async Task<Project> UpdateProject(Project project)
+        {
+            var created = await _database.StringSetAsync(project.Guid, JsonSerializer.Serialize(project));
+            return created ? await GetProjectById(project.Guid) : null;
+        }
 
     }
 }

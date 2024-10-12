@@ -10,6 +10,7 @@ namespace Core.Interfaces
     {
         Task<Project> GetProjectById(string id);
         Task<IReadOnlyList<Project>> GetProjectsAsync();
+        Task<Project> UpdateProject(Project project);
 
     }
 }

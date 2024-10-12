@@ -2,8 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API.Dtos;
+using API.Helpers;
 using Core.Entities;
 using Core.Interfaces;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -13,10 +17,14 @@ namespace API.Controllers
     public class ProjectController : ControllerBase
     {
         private readonly IProjectRepository _projectRepository;
+        private readonly UserManager<AccountUser> _userManager;
+        private readonly ITaskRepository _taskRepository;
 
-        public ProjectController(IProjectRepository repository)
+        public ProjectController(IProjectRepository repository, UserManager<AccountUser> manager, ITaskRepository taskRepository)
         {
             _projectRepository = repository;
+            _userManager = manager;
+            _taskRepository = taskRepository;
         }
 
         [HttpGet]
@@ -25,9 +33,10 @@ namespace API.Controllers
             return Ok(await _projectRepository.GetProjectsAsync());
         }
         [HttpGet("{id}")]
-        public async Task<ActionResult<Project>> Get(string id)
+        public async Task<ActionResult<ProjectDto>> Get(string id)
         {
-            return Ok(await _projectRepository.GetProjectById(id));
+            var res = await MappingHelper.GetProjectDtoByIdAsync(id, _projectRepository, _taskRepository, _userManager);
+            return res;
         }
     }
 }
