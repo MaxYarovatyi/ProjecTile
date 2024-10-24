@@ -13,3 +13,4 @@ X:\diploma\Infrastructure\obj\Debug\net8.0\refint\Infrastructure.dll
 X:\diploma\Infrastructure\obj\Debug\net8.0\Infrastructure.pdb
 X:\diploma\Infrastructure\obj\Debug\net8.0\ref\Infrastructure.dll
 X:\diploma\Infrastructure\obj\Debug\net8.0\Infrastr.15EFFBFE.Up2Date
+X:\diploma\Infrastructure\obj\Debug\net8.0\Infrastructure.sourcelink.json

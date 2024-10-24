@@ -38,5 +38,12 @@ namespace API.Controllers
             var res = await MappingHelper.GetProjectDtoByIdAsync(id, _projectRepository, _taskRepository, _userManager);
             return res;
         }
+        [HttpPost]
+        public async Task<ActionResult<ProjectDto>> UpdateProject(ProjectDto project)
+        {
+            var convertedProject = MappingHelper.ConvertProjectDtoToProject(project);
+            var res = await _projectRepository.UpdateProject(convertedProject);
+            return res == null ? null : await Get(res.Guid);
+        }
     }
 }

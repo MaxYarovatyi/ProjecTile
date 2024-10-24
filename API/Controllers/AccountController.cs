@@ -89,6 +89,20 @@ namespace API.Controllers
                 DisplayName = user.DisplayName
             };
         }
-
+        [HttpGet("search")]
+        public async Task<ActionResult<List<UserDto>>> SearchUsersByEmail([FromQuery] string email)
+        {
+            if (string.IsNullOrWhiteSpace(email)) return BadRequest("Email is required");
+            var users = _userManager.Users.Where(e => e.Email.Contains(email)).Select(u => new UserDto
+            {
+                Id = u.Id,
+                Email = u.Email,
+                Token = "",
+                DisplayName = u.DisplayName
+            }).ToList();
+            return users != null
+            ? users
+            : NotFound("User not found");
+        }
     }
 }

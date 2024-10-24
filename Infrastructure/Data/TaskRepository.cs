@@ -33,5 +33,13 @@ namespace Infrastructure.Data
         {
             throw new NotImplementedException();
         }
+
+        public async Task<ProjectTask> UpdateTaskAsync(ProjectTask task)
+        {
+            var data = await _database.StringSetAndGetAsync(task.Guid, JsonSerializer.Serialize(task));
+            return data.IsNullOrEmpty ? null : JsonSerializer.Deserialize<ProjectTask>(data,
+            new JsonSerializerOptions() { PropertyNameCaseInsensitive = true }
+            );
+        }
     }
 }

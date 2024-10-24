@@ -65,12 +65,27 @@ namespace API.Helpers
                 Name = project.Name,
                 Description = project.Description,
                 Owner = owner,
-                Comments = new List<string>(), ///!!!!!!!!!!!!!
+                Comments = project.Comments, ///!!!!!!!!!!!!!
                 CreatedAt = project.CreatedAt,
                 Tasks = tasks,
-                Participants = participants
+                Participants = participants,
+                Status = project.Status
             };
         }
-
+        public static Project ConvertProjectDtoToProject(ProjectDto dto)
+        {
+            return new Project
+            {
+                Guid = dto.Guid,
+                Name = dto.Name,
+                Description = dto.Description,
+                Status = dto.Status,
+                OwnerId = dto.Owner.Id,
+                CreatedAt = dto.CreatedAt,
+                Participants = dto.Participants.Select(p => p.Id).ToList(),
+                Tasks = dto.Tasks.Select(t => t.Guid).ToList(),
+                Comments = dto.Comments
+            };
+        }
     }
 }

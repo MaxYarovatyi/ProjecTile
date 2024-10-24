@@ -10,5 +10,6 @@ namespace Core.Interfaces
     {
         Task<ProjectTask> GetTaskById(string id);
         Task<List<ProjectTask>> GetTasksAsync();
+        Task<ProjectTask> UpdateTaskAsync(ProjectTask task);
     }
 }
