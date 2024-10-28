@@ -17,8 +17,6 @@ namespace Core.Entities
         public DateTime? DueDate { get; set; }
         public string Status { get; set; }
         public IReadOnlyList<string> AssignedTo { get; set; }
-
-        public string Project { get; set; }
         public IReadOnlyList<string> Comments { get; set; }
         //public IReadOnlyList<string> AttachedFiles { get; set; }
     }

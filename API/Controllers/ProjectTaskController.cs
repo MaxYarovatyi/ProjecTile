@@ -42,10 +42,11 @@ namespace API.Controllers
             return await MappingHelper.GetTaskAsync(id, _taskRepository, _manager);
 
         }
-        [HttpGet]
-        public async Task<ActionResult<List<ProjectTask>>> GetTasksAsync()
+        [HttpPost]
+        public async Task<ActionResult<TaskDto>> UpdateTask(TaskDto task)
         {
-            return Ok(await _taskRepository.GetTasksAsync());
+            var res = await _taskRepository.UpdateTaskAsync(MappingHelper.ConvertTaskDtoToProjectTask(task));
+            return res == null ? BadRequest() : Ok(await MappingHelper.GetTaskAsync(res.Guid, _taskRepository, _manager));
         }
     }
 }

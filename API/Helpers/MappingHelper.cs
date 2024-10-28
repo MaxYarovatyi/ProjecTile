@@ -87,5 +87,19 @@ namespace API.Helpers
                 Comments = dto.Comments
             };
         }
+        public static ProjectTask ConvertTaskDtoToProjectTask(TaskDto dto)
+        {
+            return new ProjectTask
+            {
+                Guid = dto.Guid,
+                Title = dto.Title,
+                Description = dto.Description,
+                CreatedAt = dto.CreatedAt,
+                DueDate = dto.DueDate,
+                Comments = dto.Comments,
+                Status = dto.Status,
+                AssignedTo = dto.AssignedTo.Select(p => p.Id).ToList(),
+            };
+        }
     }
 }

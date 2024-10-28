@@ -36,8 +36,8 @@ namespace Infrastructure.Data
 
         public async Task<ProjectTask> UpdateTaskAsync(ProjectTask task)
         {
-            var data = await _database.StringSetAndGetAsync(task.Guid, JsonSerializer.Serialize(task));
-            return data.IsNullOrEmpty ? null : JsonSerializer.Deserialize<ProjectTask>(data,
+            var res = await _database.StringSetAsync(task.Guid, JsonSerializer.Serialize(task));
+            return !res ? null : JsonSerializer.Deserialize<ProjectTask>(await _database.StringGetAsync(task.Guid),
             new JsonSerializerOptions() { PropertyNameCaseInsensitive = true }
             );
         }
