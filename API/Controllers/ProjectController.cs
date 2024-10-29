@@ -45,5 +45,44 @@ namespace API.Controllers
             var res = await _projectRepository.UpdateProject(convertedProject);
             return res == null ? null : await Get(res.Guid);
         }
+        [HttpGet("getTasks/{id}")]
+        public async Task<ActionResult<List<TaskDto>>> MyMethodAsync(string id)
+        {
+            var project = await _projectRepository.GetProjectById(id);
+            if (project == null) return NotFound("Project not found");
+            var tasks = new List<TaskDto>();
+            foreach (var taskId in project.Tasks)
+            {
+                var task = await MappingHelper.GetTaskAsync(taskId, _taskRepository, _userManager);
+                tasks.Add(task);
+            }
+            return Ok(tasks);
+        }
+        [HttpPost("removeuser")]
+        public async Task<ActionResult<ProjectDto>> RemoveUserFromProject([FromQuery] string projectId, [FromQuery] string userId)
+        {
+            var finded = await this._projectRepository.GetProjectById(projectId);
+            if (finded == null) return NotFound("Project Not Found");
+            if (!finded.Participants.Contains(userId)) return NotFound("User not found in project");
+            finded.Participants.Remove(userId);
+            foreach (var taskId in finded.Tasks)
+            {
+                var task = await this._taskRepository.GetTaskById(taskId);
+                task.AssignedTo.Remove(userId);
+                await this._taskRepository.UpdateTaskAsync(task);
+            }
+            var res = await _projectRepository.UpdateProject(finded);
+            return res == null ? null : await MappingHelper.GetProjectDtoByIdAsync(res.Guid, this._projectRepository, this._taskRepository, this._userManager);
+        }
+        [HttpPost("adduser")]
+        public async Task<ActionResult<ProjectDto>> AddUserFromProject([FromQuery] string projectId, [FromQuery] string userId)
+        {
+            var finded = await this._projectRepository.GetProjectById(projectId);
+            if (finded == null) return NotFound("Project Not Found");
+            if (finded.Participants.Contains(userId)) return BadRequest("User already exists"); ;
+            finded.Participants.Add(userId);
+            var res = await _projectRepository.UpdateProject(finded);
+            return res == null ? null : await MappingHelper.GetProjectDtoByIdAsync(res.Guid, this._projectRepository, this._taskRepository, this._userManager);
+        }
     }
 }

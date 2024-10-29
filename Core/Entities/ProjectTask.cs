@@ -16,8 +16,8 @@ namespace Core.Entities
         public DateTime? CreatedAt { get; set; }
         public DateTime? DueDate { get; set; }
         public string Status { get; set; }
-        public IReadOnlyList<string> AssignedTo { get; set; }
-        public IReadOnlyList<string> Comments { get; set; }
+        public List<string> AssignedTo { get; set; }
+        public List<string> Comments { get; set; }
         //public IReadOnlyList<string> AttachedFiles { get; set; }
     }
 }

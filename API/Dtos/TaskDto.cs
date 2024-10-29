@@ -13,7 +13,7 @@ namespace API.Dtos
         public DateTime? CreatedAt { get; set; }
         public DateTime? DueDate { get; set; }
         public string Status { get; set; }
-        public IReadOnlyList<UserDto> AssignedTo { get; set; }
-        public IReadOnlyList<string> Comments { get; set; }
+        public List<UserDto> AssignedTo { get; set; }
+        public List<string> Comments { get; set; }
     }
 }
