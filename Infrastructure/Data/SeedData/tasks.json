@@ -1,13 +1,98 @@
 [
   {
-    "Guid": "1234567890",
-    "Title": "My Task",
-    "Description": "This is a sample task",
-    "CreatedAt": "2023-09-18T14:30:00",
-    "DueDate": "2023-09-25T14:30:00",
-    "Status": "In Progress",
-    "AssignedTo": [],
-    "Project": {},
-    "Comments": []
+    "guid": "d3b91c7f-f13f-4a86-bb2f-bd906c0db69e",
+    "title": "Розробити нову функцію",
+    "description": "Створити та інтегрувати нову функцію для покращення користувацького досвіду.",
+    "createdAt": "2024-04-20T10:30:00Z",
+    "dueDate": "2024-05-10T10:30:00Z",
+    "status": "To Do",
+    "assignedTo": [
+      {
+        "id": "01601982-4f19-467e-8b12-f1f060504ef5",
+        "displayName": "Іван Петренко",
+        "email": "ivan.petrenko@example.com"
+      },
+      {
+        "id": "d3aeb4ba-3d64-40fb-bfa9-3083688d3b64",
+        "displayName": "Олена Коваль",
+        "email": "olena.koval@example.com"
+      }
+    ],
+    "comments": []
+  },
+  {
+    "guid": "d2f1aa91-5eb8-4a76-bbd7-fc6e0e3675a8",
+    "title": "Оновити документацію",
+    "description": "Переглянути та оновити проектну документацію з урахуванням останніх змін.",
+    "createdAt": "2024-04-22T09:00:00Z",
+    "dueDate": "2024-05-05T09:00:00Z",
+    "status": "In Progress",
+    "assignedTo": [
+      {
+        "id": "d3aeb4ba-3d64-40fb-bfa9-3083688d3b64",
+        "displayName": "Олена Коваль",
+        "email": "olena.koval@example.com"
+      }
+    ],
+    "comments": [
+      "Документація оновлена до розділу 3.2.",
+      "Необхідно додати приклади коду."
+    ]
+  },
+  {
+    "guid": "1f0d8bfa-83f8-473b-8025-84db0bc5d25e",
+    "title": "Створити макети дизайну",
+    "description": "Розробити макети дизайну для нової функції з урахуванням UX/UI принципів.",
+    "createdAt": "2024-04-25T14:15:00Z",
+    "dueDate": "2024-05-02T14:15:00Z",
+    "status": "To Do",
+    "assignedTo": [
+      {
+        "id": "01601982-4f19-467e-8b12-f1f060504ef5",
+        "displayName": "Іван Петренко",
+        "email": "ivan.petrenko@example.com"
+      }
+    ],
+    "comments": []
+  },
+  {
+    "guid": "c6364d77-b05b-4651-bb09-57db89d3c85b",
+    "title": "Рецензування коду",
+    "description": "Переглянути останній пулл-реквест від команди розробників.",
+    "createdAt": "2024-04-27T11:30:00Z",
+    "dueDate": "2024-05-03T11:30:00Z",
+    "status": "Done",
+    "assignedTo": [
+      {
+        "id": "d3aeb4ba-3d64-40fb-bfa9-3083688d3b64",
+        "displayName": "Олена Коваль",
+        "email": "olena.koval@example.com"
+      }
+    ],
+    "comments": [
+      "Код переглянуто та схвалено.",
+      "Знайдено кілька дрібних помилок, виправлено."
+    ]
+  },
+  {
+    "guid": "4a054c81-74de-4f55-b62a-58f5ab260d62",
+    "title": "Проведення тестування",
+    "description": "Провести тестування нових функцій для забезпечення якості продукту.",
+    "createdAt": "2024-04-28T13:45:00Z",
+    "dueDate": "2024-05-08T13:45:00Z",
+    "status": "To Do",
+    "assignedTo": [
+      {
+        "id": "01601982-4f19-467e-8b12-f1f060504ef5",
+        "displayName": "Іван Петренко",
+        "email": "ivan.petrenko@example.com"
+      },
+      {
+        "id": "d3aeb4ba-3d64-40fb-bfa9-3083688d3b64",
+        "displayName": "Олена Коваль",
+        "email": "olena.koval@example.com"
+      }
+    ],
+    "comments": []
   }
 ]

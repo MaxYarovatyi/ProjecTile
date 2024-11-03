@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using API.Dtos;
 using API.Helpers;
@@ -19,12 +20,14 @@ namespace API.Controllers
         private readonly IProjectRepository _projectRepository;
         private readonly UserManager<AccountUser> _userManager;
         private readonly ITaskRepository _taskRepository;
+        private readonly IUserProjectsRepository _userProjectsRepository;
 
-        public ProjectController(IProjectRepository repository, UserManager<AccountUser> manager, ITaskRepository taskRepository)
+        public ProjectController(IProjectRepository repository, UserManager<AccountUser> manager, ITaskRepository taskRepository, IUserProjectsRepository userProjectsRepository = null)
         {
             _projectRepository = repository;
             _userManager = manager;
             _taskRepository = taskRepository;
+            _userProjectsRepository = userProjectsRepository;
         }
 
         [HttpGet]
@@ -41,6 +44,12 @@ namespace API.Controllers
         [HttpPost]
         public async Task<ActionResult<ProjectDto>> UpdateProject(ProjectDto project)
         {
+            var email = User.FindFirstValue(ClaimTypes.Email);
+            var user = await _userManager.FindByEmailAsync(email);
+            var userProjects = await _userProjectsRepository.GetUserProjectsById(user.Id);
+            userProjects.Projects.Add(project.Guid);
+            var updated = await _userProjectsRepository.UpdateUserProjects(user.Id, userProjects);
+
             var convertedProject = MappingHelper.ConvertProjectDtoToProject(project);
             var res = await _projectRepository.UpdateProject(convertedProject);
             return res == null ? null : await Get(res.Guid);

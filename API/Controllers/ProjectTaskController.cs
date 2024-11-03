@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using API.Dtos;
 using API.Helpers;
@@ -18,12 +19,14 @@ namespace API.Controllers
     public class ProjectTaskController : ControllerBase
     {
         private readonly ITaskRepository _taskRepository;
+        private readonly IUserTaskRepository _userTaskRepository;
         private readonly UserManager<AccountUser> _manager;
 
-        public ProjectTaskController(ITaskRepository taskRepository, UserManager<AccountUser> manager)
+        public ProjectTaskController(ITaskRepository taskRepository, UserManager<AccountUser> manager, IUserTaskRepository userTaskRepository = null)
         {
             _taskRepository = taskRepository;
             _manager = manager;
+            _userTaskRepository = userTaskRepository;
         }
 
         [HttpGet("{id}")]
@@ -45,8 +48,25 @@ namespace API.Controllers
         [HttpPost]
         public async Task<ActionResult<TaskDto>> UpdateTask(TaskDto task)
         {
+            var email = User.FindFirstValue(ClaimTypes.Email);
+            var user = await _manager.FindByEmailAsync(email);
+            var update = await _userTaskRepository.AddTask(user.Id, task.Guid);
+            if (update == null) return NotFound("User tasks updating problem");
             var res = await _taskRepository.UpdateTaskAsync(MappingHelper.ConvertTaskDtoToProjectTask(task));
             return res == null ? BadRequest() : Ok(await MappingHelper.GetTaskAsync(res.Guid, _taskRepository, _manager));
+        }
+        [HttpGet("user/{id}")]
+        public async Task<ActionResult<List<TaskDto>>> GetTasksForUsers(string id)
+        {
+            var tasks = await _userTaskRepository.GetUserTasks(id);
+            if (tasks == null) return NotFound("Tasks not found");
+            var tasksToReturn = new List<TaskDto>();
+            foreach (var taskId in tasks.Tasks)
+            {
+                var data = await MappingHelper.GetTaskAsync(taskId, _taskRepository, _manager);
+                tasksToReturn.Add(data);
+            }
+            return tasksToReturn;
         }
     }
 }

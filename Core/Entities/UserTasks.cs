@@ -5,9 +5,12 @@ using System.Threading.Tasks;
 
 namespace Core.Entities
 {
-    public class UserProjects
+    public class UserTasks
     {
         public string Id { get; set; }
-        public List<string> Projects { get; set; }
+        public List<string> Tasks { get; set; }
+
+
+
     }
 }

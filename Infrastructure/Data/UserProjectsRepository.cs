@@ -24,7 +24,11 @@ namespace Infrastructure.Data
         public async Task<UserProjects> UpdateUserProjects(string id, UserProjects projects)
         {
             var data = await GetUserProjectsById(id);
-            var updatedProjects = data == null ? new UserProjects(id) : projects;
+            var updatedProjects = data == null ? new UserProjects
+            {
+                Id = id,
+                Projects = []
+            } : projects;
             var created = await _database.StringSetAsync(id, JsonSerializer.Serialize(updatedProjects));
             return !created ? null : await GetUserProjectsById(id);
         }

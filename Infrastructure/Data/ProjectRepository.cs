@@ -17,7 +17,7 @@ namespace Infrastructure.Data
 
         public ProjectRepository(IConnectionMultiplexer redis)
         {
-            _database = redis.GetDatabase();
+            _database = redis.GetDatabase(0);
         }
 
         public async Task<Project> GetProjectById(string id)

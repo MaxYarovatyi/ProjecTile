@@ -9,7 +9,7 @@ namespace Core.Interfaces
     public interface ITaskRepository
     {
         Task<ProjectTask> GetTaskById(string id);
-        Task<List<ProjectTask>> GetTasksAsync();
+        Task<List<ProjectTask>> GetTasksForUserAsync(string id);
         Task<ProjectTask> UpdateTaskAsync(ProjectTask task);
     }
 }

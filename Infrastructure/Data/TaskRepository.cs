@@ -29,7 +29,7 @@ namespace Infrastructure.Data
             });
         }
 
-        public async Task<List<ProjectTask>> GetTasksAsync()
+        public async Task<List<ProjectTask>> GetTasksForUserAsync(string id)
         {
             throw new NotImplementedException();
         }

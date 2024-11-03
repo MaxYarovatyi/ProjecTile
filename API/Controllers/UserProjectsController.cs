@@ -51,10 +51,18 @@ namespace API.Controllers
             return Ok(projectsToReturn);
         }
         [HttpGet("{id}")]
-        public async Task<ActionResult<IReadOnlyList<Project>>> GetUserProjectsById(string id)
+        public async Task<ActionResult<IReadOnlyList<ProjectDto>>> GetUserProjectsId(string id)
         {
-            var res = await _projectService.GetProjectTasksById(id);
-            return Ok(res) ?? null;
+
+            var data = await _repository.GetUserProjectsById(id);
+            var projects = data.Projects;
+            var projectsToReturn = new List<ProjectDto>();
+            foreach (var project in projects)
+            {
+                var findedProject = await MappingHelper.GetProjectDtoByIdAsync(project, _projectRepository, _taskRepository, _userManager);
+                projectsToReturn.Add(findedProject);
+            }
+            return projectsToReturn;
         }
     }
 }
