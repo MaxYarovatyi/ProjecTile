@@ -17,7 +17,6 @@ namespace API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize]
     public class UserProjectsController : ControllerBase
     {
 
@@ -37,9 +36,11 @@ namespace API.Controllers
         }
 
         [HttpGet]
+
         public async Task<ActionResult<IReadOnlyList<ProjectDto>>> GetCurrentUserProjects()
         {
             var email = User.FindFirstValue(ClaimTypes.Email);
+            var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var user = await _userManager.FindByEmailAsync(email);
             var data = await _repository.GetUserProjectsById(user.Id);
             var projectsToReturn = new List<ProjectDto>();

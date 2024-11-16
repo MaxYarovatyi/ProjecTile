@@ -151,3 +151,13 @@ X:\diploma\api\obj\Debug\net8.0\api.genruntimeconfig.cache
 X:\diploma\api\obj\Debug\net8.0\ref\api.dll
 X:\diploma\api\bin\Debug\net8.0\Macross.Json.Extensions.dll
 X:\diploma\api\obj\Debug\net8.0\api.sourcelink.json
+X:\diploma\api\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.Negotiate.dll
+X:\diploma\api\bin\Debug\net8.0\Microsoft.AspNetCore.Connections.Abstractions.dll
+X:\diploma\api\bin\Debug\net8.0\Microsoft.Extensions.Caching.Memory.dll
+X:\diploma\api\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+X:\diploma\api\bin\Debug\net8.0\Microsoft.Extensions.Features.dll
+X:\diploma\api\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+X:\diploma\api\bin\Debug\net8.0\System.DirectoryServices.Protocols.dll
+X:\diploma\api\bin\Debug\net8.0\runtimes\linux\lib\net8.0\System.DirectoryServices.Protocols.dll
+X:\diploma\api\bin\Debug\net8.0\runtimes\osx\lib\net8.0\System.DirectoryServices.Protocols.dll
+X:\diploma\api\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.DirectoryServices.Protocols.dll

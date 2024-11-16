@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using API.Dtos;
+using API.Extensions;
 using API.Helpers;
 using Core.Entities;
 using Core.Interfaces;
@@ -44,7 +45,8 @@ namespace API.Controllers
         [HttpPost]
         public async Task<ActionResult<ProjectDto>> UpdateProject(ProjectDto project)
         {
-            var email = User.FindFirstValue(ClaimTypes.Email);
+            var email = User.RetrieveEmailFromPrincipal();
+            var ssuser = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var user = await _userManager.FindByEmailAsync(email);
             var userProjects = await _userProjectsRepository.GetUserProjectsById(user.Id);
             userProjects.Projects.Add(project.Guid);

@@ -22,7 +22,7 @@ namespace Infrastructure.Data
         public async Task<UserTasks> GetUserTasks(string id)
         {
             var res = await _database.StringGetAsync(id);
-            return res.IsNullOrEmpty ? JsonSerializer.Deserialize<UserTasks>(res) : null;
+            return res.IsNullOrEmpty ? null : JsonSerializer.Deserialize<UserTasks>(res);
         }
         public async Task<UserTasks> AddTask(string userId, string taskId)
         {

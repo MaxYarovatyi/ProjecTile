@@ -1,21 +1,14 @@
-using System.Text.Encodings.Web;
 using Core.Entities;
 using Core.Interfaces;
 using Infrastructure.Data;
 using Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using StackExchange.Redis;
 using System.Text.Json;
 using API.Extensions;
 using Infrastructure.Services;
-
+using Microsoft.AspNetCore.Authentication.Negotiate;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -24,16 +17,14 @@ builder.Services.AddControllers().AddJsonOptions(options =>
     options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
 });
 
-builder.Services.AddCors();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
-builder.Services.AddScoped<ITaskRepository, TaskRepository>();
-builder.Services.AddScoped<ICommentRepository, CommentRepository>();
-builder.Services.AddScoped<IUserProjectsRepository, UserProjectsRepository>();
-builder.Services.AddScoped<IUserTaskRepository, UserTasksRepository>();
-builder.Services.AddScoped<ITokenService, TokenService>();
-builder.Services.AddScoped<IProjectService, ProjectService>();
+builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
+   .AddNegotiate();
+builder.Services.AddAuthorization(options =>
+{
+    options.FallbackPolicy = options.DefaultPolicy;
+});
 //builder.Services.AddDbContext<StoreContext>(x => x.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddDbContext<AppIdentityDbContext>(x =>
 {
@@ -49,7 +40,13 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "API", Version = "v1" });
 });
-
+builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
+builder.Services.AddScoped<ITaskRepository, TaskRepository>();
+builder.Services.AddScoped<ICommentRepository, CommentRepository>();
+builder.Services.AddScoped<IUserProjectsRepository, UserProjectsRepository>();
+builder.Services.AddScoped<IUserTaskRepository, UserTasksRepository>();
+builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<IProjectService, ProjectService>();
 var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
