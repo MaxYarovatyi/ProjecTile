@@ -10,5 +10,6 @@ namespace Core.Interfaces
     {
         public Task<UserTasks> GetUserTasks(string id);
         public Task<UserTasks> AddTask(string userId, string taskId);
+        public Task<UserTasks> UpdateUserTasks(string userId, UserTasks tasks);
     }
 }

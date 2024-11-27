@@ -19,12 +19,7 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
-   .AddNegotiate();
-builder.Services.AddAuthorization(options =>
-{
-    options.FallbackPolicy = options.DefaultPolicy;
-});
+
 //builder.Services.AddDbContext<StoreContext>(x => x.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddDbContext<AppIdentityDbContext>(x =>
 {
@@ -80,7 +75,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseStatusCodePagesWithReExecute("/errors/{0}");
 
-app.UseRouting();
 app.UseCors(builder =>
 {
     builder.WithOrigins("http://localhost:4200", "https://localhost:4200")
@@ -90,7 +84,7 @@ app.UseCors(builder =>
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-
+app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 

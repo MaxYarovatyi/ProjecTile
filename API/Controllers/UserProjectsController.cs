@@ -65,5 +65,18 @@ namespace API.Controllers
             }
             return projectsToReturn;
         }
+        [HttpPost]
+        public async Task<ActionResult<IReadOnlyList<ProjectDto>>> UpdateUserProjects(string id, string projectId)
+        {
+            var data = await _repository.GetUserProjectsById(id);
+            var prjects = data == null ? [] : data.Projects;
+            prjects.Add(projectId);
+            var result = await _repository.UpdateUserProjects(id, new UserProjects
+            {
+                Projects = prjects,
+                Id = id
+            });
+            return await GetUserProjectsId(id);
+        }
     }
 }

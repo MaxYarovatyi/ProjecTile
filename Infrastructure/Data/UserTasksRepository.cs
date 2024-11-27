@@ -33,5 +33,17 @@ namespace Infrastructure.Data
             var res = await _database.StringSetAsync(userId, JsonSerializer.Serialize(tasks));
             return res ? JsonSerializer.Deserialize<UserTasks>(await _database.StringGetAsync(userId)) : null;
         }
+
+        public async Task<UserTasks> UpdateUserTasks(string userId, UserTasks tasks)
+        {
+            var data = await GetUserTasks(userId);
+            var updatedTasks = data == null ? new UserTasks
+            {
+                Id = userId,
+                Tasks = []
+            } : tasks;
+            var created = await _database.StringSetAsync(userId, JsonSerializer.Serialize(updatedTasks));
+            return !created ? null : await GetUserTasks(userId);
+        }
     }
 }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using API.Dtos;
 using Core.Entities;
 using Core.Interfaces;
+using Infrastructure.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -19,13 +20,21 @@ namespace API.Controllers
         private readonly UserManager<AccountUser> _userManager;
         private readonly SignInManager<AccountUser> _signInManager;
         private readonly ITokenService _tokenService;
-        public AccountController(UserManager<AccountUser> userManager, SignInManager<AccountUser> signInManager, ITokenService tokenService)
+        private readonly IUserProjectsRepository _userProjectsRepository;
+        private readonly IUserTaskRepository _taskRepo;
+        public AccountController(UserManager<AccountUser> userManager, SignInManager<AccountUser> signInManager, ITokenService tokenService, IUserTaskRepository userTasksRepository, IUserProjectsRepository userProjectsRepository)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _tokenService = tokenService;
+            _userProjectsRepository = userProjectsRepository;
+            _taskRepo = userTasksRepository;
         }
-
+        [HttpGet("emailexists")]
+        public async Task<ActionResult<bool>> CheckEmailExistsAsync([FromQuery] string email)
+        {
+            return await _userManager.FindByEmailAsync(email) != null ? true : false;
+        }
         [HttpGet]
         [Authorize]
         public async Task<ActionResult<UserDto>> GetCurrentUser()
@@ -43,11 +52,7 @@ namespace API.Controllers
             };
         }
 
-        [HttpGet("emailexists")]
-        public async Task<ActionResult<bool>> CheckEmailExistsAsync([FromQuery] string email)
-        {
-            return await _userManager.FindByEmailAsync(email) != null ? true : false;
-        }
+
 
 
         [HttpPost("login")]
@@ -80,7 +85,8 @@ namespace API.Controllers
             var result = await _userManager.CreateAsync(user, registerDto.Password);
 
             if (!result.Succeeded) return BadRequest(new object { });
-
+            await _userProjectsRepository.UpdateUserProjects(user.Id, null);
+            await _taskRepo.UpdateUserTasks(user.Id, null);
             return new UserDto
             {
                 Id = user.Id,

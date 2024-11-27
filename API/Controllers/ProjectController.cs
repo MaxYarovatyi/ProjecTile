@@ -49,7 +49,7 @@ namespace API.Controllers
             var ssuser = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var user = await _userManager.FindByEmailAsync(email);
             var userProjects = await _userProjectsRepository.GetUserProjectsById(user.Id);
-            userProjects.Projects.Add(project.Guid);
+            if (!userProjects.Projects.Contains(project.Guid)) userProjects.Projects.Add(project.Guid);
             var updated = await _userProjectsRepository.UpdateUserProjects(user.Id, userProjects);
 
             var convertedProject = MappingHelper.ConvertProjectDtoToProject(project);
